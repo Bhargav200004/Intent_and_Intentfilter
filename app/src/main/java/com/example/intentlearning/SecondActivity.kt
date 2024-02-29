@@ -20,6 +20,11 @@ class SecondActivity : ComponentActivity() {
                         .fillMaxSize()
                 ) {
                     Text(text = "SecondScreen Activity")
+                    try {
+
+                    }catch (e : Exception){
+                        e.printStackTrace()
+                    }
                 }
             }
         }

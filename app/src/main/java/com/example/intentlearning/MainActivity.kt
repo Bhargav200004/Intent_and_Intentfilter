@@ -1,5 +1,6 @@
 package com.example.intentlearning
 
+import android.content.ActivityNotFoundException
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,20 +26,31 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Button(onClick = {
-                                Intent(applicationContext,SecondActivity::class.java).also{
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Button(onClick = {
+//                                Intent(applicationContext,SecondActivity::class.java).also{
+//                                    startActivity(it)
+//                                }
+                            Intent(Intent.ACTION_MAIN).also {
+                                it.`package` = "com.google.android.youtube"
+                                try {
                                     startActivity(it)
+                                }catch (e : ActivityNotFoundException){
+                                    e.printStackTrace()
                                 }
-                            }) {
-                                Text(text = "Click me")
+
+
                             }
+                        }) {
+                            Text(text = "Click me")
+
                         }
+                    }
                 }
             }
         }
